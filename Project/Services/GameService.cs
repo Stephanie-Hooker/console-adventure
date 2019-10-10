@@ -9,7 +9,7 @@ namespace ConsoleAdventure.Project
     private IGame _game { get; set; }
 
     public List<string> Messages { get; set; }
-    public bool Playing { get; set; }
+    // public bool Playing { get; set; }
     public GameService()
     {
       _game = new Game();
@@ -18,11 +18,23 @@ namespace ConsoleAdventure.Project
     public void Go(string direction)
     {
       // change rooms
+      string from = _game.CurrentRoom.Name;
       _game.CurrentRoom = _game.CurrentRoom.Go(direction);
+      string to = _game.CurrentRoom.Name;
+
+      // if failed to change rooms, stop code execution
+      if (from == to)
+      {
+        Messages.Add("Invalid Choice");
+        return;
+      }
+      Messages.Add($"You have left {from} and have now entered the {to}");
+      Messages.Add(_game.CurrentRoom.GetTemplate());
     }
+
     public void Help()
     {
-      throw new System.NotImplementedException();
+      Messages.Add(" Go - allows you to move between the rooms, \n Inventory - allows you to see the list of items you have collected, \n Look - returns you back to your current room from the help menu, \n Take item - allows you to to take the item with you to the next room, \n Use item - allows you to the use the item in current room \n Quit - allows you to quit the game.");
     }
 
     public void Inventory()
@@ -32,12 +44,12 @@ namespace ConsoleAdventure.Project
 
     public void Look()
     {
-      throw new System.NotImplementedException();
+      Messages.Add(_game.CurrentRoom.GetTemplate());
     }
 
     public void Quit()
     {
-      this.Playing = false;
+      //   Playing = false;
 
     }
     ///<summary>
@@ -50,7 +62,8 @@ namespace ConsoleAdventure.Project
 
     public void Setup(string playerName)
     {
-      throw new System.NotImplementedException();
+      Messages.Add($" You are now in the {_game.CurrentRoom.Name} \n");
+      Messages.Add(_game.CurrentRoom.GetTemplate());
     }
     ///<summary>When taking an item be sure the item is in the current room before adding it to the player inventory, Also don't forget to remove the item from the room it was picked up in</summary>
     public void TakeItem(string itemName)

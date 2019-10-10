@@ -18,10 +18,10 @@ namespace ConsoleAdventure.Project.Models
     public void Setup()
     {
       //create rooms
-      Room room1 = new Room("Room1", "1");
-      Room room2 = new Room("Room2", "2");
-      Room room3 = new Room("Room3", "3");
-      Room room4 = new Room("Room4", "4");
+      Room room1 = new Room("Bedroom", "1");
+      Room room2 = new Room("Dinning room", "2");
+      Room room3 = new Room("Pantry", "3");
+      Room room4 = new Room("Kitchen", "4");
       Room room5 = new Room("Room5", "5");
       Room room6 = new Room("Room6", "6");
 
@@ -30,6 +30,7 @@ namespace ConsoleAdventure.Project.Models
       room2.Exits.Add("south", room1);
 
       room2.Exits.Add("west", room3);
+      room3.Exits.Add("east", room2);
 
       room2.Exits.Add("north", room4);
       room4.Exits.Add("south", room2);
@@ -43,6 +44,11 @@ namespace ConsoleAdventure.Project.Models
       Item I2 = new Item("bag of Starbucks coffee", "It is the best coffee in the world, right?");
       Item I3 = new Item("bag of non-name branded coffee", "do you take a risk?");
       Item I4 = new Item("coffee maker", "you found the item needed to make the magic bean juice");
+
+      room1.Items.Add(I1);
+      room3.Items.Add(I2);
+      room3.Items.Add(I3);
+      room4.Items.Add(I4);
 
 
       CurrentRoom = room1;
