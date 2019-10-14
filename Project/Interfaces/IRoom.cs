@@ -9,6 +9,8 @@ namespace ConsoleAdventure.Project.Interfaces
     string Description { get; set; }
     List<Item> Items { get; set; }
     Dictionary<string, IRoom> Exits { get; set; }
+    public bool ItemUsed { get; set; }
+    public string AlteredDescription { get; set; }
 
     IRoom Go(string direction);
 

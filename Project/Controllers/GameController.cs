@@ -28,7 +28,6 @@ namespace ConsoleAdventure.Project.Controllers
     //NOTE Gets the user input, calls the appropriate command, and passes on the option if needed.
     public void GetUserInput()
     {
-      Console.WriteLine
       Console.WriteLine("What would you like to do?");
       Console.WriteLine("(go, use, take, inventory, look, help, quit, reset)");
       string input = Console.ReadLine().ToLower() + " ";

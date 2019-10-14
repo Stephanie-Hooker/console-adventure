@@ -10,10 +10,10 @@ namespace ConsoleAdventure.Project
     public GameService(IGame _game, bool playing)
     {
       this._game = _game;
-      // this.Playing = playing;
 
     }
     private IGame _game { get; set; }
+    // this.Playing = playing;
 
     public List<string> Messages { get; set; }
     // public bool Playing { get; set; }
@@ -37,8 +37,9 @@ namespace ConsoleAdventure.Project
       }
       if (to == "Office")
       {
-        Messages.Add("You waited to long to get caffeine, you DIE!\n");
-
+        Messages.Add("You went into the wrong room and waited too long to get caffeine. You DIED!\n Would you like to play again? Type reset to play again, or quit to exit the game\n");
+        _game.CurrentRoom.Exits = new Dictionary<string, IRoom>();
+        return;
 
       }
       Messages.Add($"You have left {from} and have now entered the {to}");
@@ -143,7 +144,23 @@ namespace ConsoleAdventure.Project
           Messages.Add($"The {itemName} cannot be used, only taken");
           break;
         case "coffee maker":
-          Messages.Add("You have chosen the right path and coffee beans to make the coffee. Life can continue on. You win!");
+          if (!_game.CurrentPlayer.Inventory.Any(i => i.Name.Contains("coffee mug")))
+          {
+            Messages.Add("Please go back to the bedroom and take the coffee mug");
+            return;
+          }
+          if (!_game.CurrentPlayer.Inventory.Any(i => i.Name.Contains("Starbucks coffee") || i.Name.Contains("generic coffee")))
+          {
+            Messages.Add("Please go back to the pantry and take a bag of coffee");
+            return;
+          }
+          if (_game.CurrentPlayer.Inventory.Any(i => i.Name.Contains("Starbucks coffee")))
+          {
+            Messages.Add("You picked the Starbucks coffee and died of snobbery! Type reset to play again");
+            _game.CurrentRoom.Exits = new Dictionary<string, IRoom>();
+            return;
+          }
+          Messages.Add("You win! You have chosen the right path and coffee beans to make the coffee. You can now go about your day like a normal adult!");
           break;
       }
     }

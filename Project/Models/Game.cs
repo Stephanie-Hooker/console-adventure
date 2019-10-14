@@ -18,12 +18,12 @@ namespace ConsoleAdventure.Project.Models
     public void Setup()
     {
       //create rooms
-      Room room1 = new Room("Bedroom", "");
-      Room room2 = new Room("Living room", "2");
-      Room room3 = new Room("Pantry", "The pantry is dark", "The light has been turned on and you see 2 different bags of coffee. Choose one bag to take with you onto the next room.");
-      Room room4 = new Room("Dining room", "4");
-      Room room5 = new Room("Office", "5");
-      Room room6 = new Room("Kitchen", "6");
+      Room room1 = new Room("Bedroom", "It's morning, and your alarm clock just went off. You rub your eyes and look over to see an empty coffee mug sitting on your night stand. Time to get up and get some coffee in that mug!");
+      Room room2 = new Room("Living room", "You have stumbled sleepily into the living room, the room is still dim as the sun is just starting to rise. You are starting to wake up as you make your way towards your goal...coffee!");
+      Room room3 = new Room("Pantry", "You opened the door to the pantry, and the room is dark. How will you find your coffee beans?", "The light has been turned on and you now see 2 different bags of coffee beans. Choose a bag to take with you into the next room.");
+      Room room4 = new Room("Dining room", "You have wandered into the dining room. There is nothing in this room, and no way to make the coffee. Keep going!");
+      Room room5 = new Room("Office", "You went into the wrong room and waited too long to get caffeine. You DIED!");
+      Room room6 = new Room("Kitchen", "You have found the right room to make coffee! Yay!");
 
       //create relationships between rooms
       room1.Exits.Add("north", room2);

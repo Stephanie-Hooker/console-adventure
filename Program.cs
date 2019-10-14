@@ -12,7 +12,7 @@ namespace ConsoleAdventure
     }
     public static void StartQuestion()
     {
-      Console.WriteLine("Welome to the game, would you like to play? type y for yes, and n for no");
+      Console.WriteLine("Would you like to play Fill your Coffee Mug? type either (y)es to play or (n)o to quit.");
       switch (Console.ReadLine().ToLower())
       {
         case "y":
